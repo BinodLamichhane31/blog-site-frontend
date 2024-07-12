@@ -1,0 +1,20 @@
+/* Forms.css */
+.custom-card {
+    border: 1px solid #0ABAB5; /* Outline color */
+}
+.custom-card-header{
+    background-color: #B4F5F0;
+    text-align: center;
+}
+
+.custom-button {
+    background-color: white;
+    border: 1px solid #0ABAB5;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-button:hover {
+    border: 1px solid #0ABAB5;
+    background-color: #0ABAB5;
+    color: white;
+}
