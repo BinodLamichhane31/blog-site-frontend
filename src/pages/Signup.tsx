@@ -14,7 +14,7 @@ import {
     Row
 } from "reactstrap";
 import {useEffect, useState} from "react";
-import './Forms.css';
+import '../App.css';
 import {signUp} from "../services/user_service.tsx";
 import {toast} from "react-toastify";
 

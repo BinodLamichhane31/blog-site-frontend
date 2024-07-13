@@ -1,12 +1,14 @@
 import React from "react";
 import Base from "../../component/Base.tsx";
+import AddBlog from "../../component/AddBlog.tsx";
+import {Container} from "reactstrap";
 const Dashboard =()=>{
     return(
         <Base>
-            <div>
-                <h1>This is dashboard</h1>
-            </div>
-
+            <Container>
+                <AddBlog>
+                </AddBlog>
+            </Container>
         </Base>
     )
 }
