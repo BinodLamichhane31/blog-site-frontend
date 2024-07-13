@@ -1,9 +1,16 @@
 import {Button, Card, CardBody, CardHeader, Container, Form, Input, Label} from "reactstrap";
 import {loadAllCategories} from "../services/category_service.tsx";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import JoditEditor from 'jodit-react';
+import {c} from "vite/dist/node/types.d-aGj9QkWt";
+
 
 const AddBlog = ()=>{
-
+    const editor = useRef(null)
+    const [content, setContent] = useState("")
+    const config = {
+        placeholder:"Start typing..."
+    }
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
@@ -30,9 +37,16 @@ const AddBlog = ()=>{
                         </div>
                         <div className={'my-3'}>
                             <Label for={'content'}>Content</Label>
-                            <Input type={'textarea'} id={'content'}
-                                   placeholder={'Enter here'}
-                            style={{height:'300px'}}/>
+                            {/*<Input type={'textarea'} id={'content'}*/}
+                            {/*       placeholder={'Enter here'}*/}
+                            {/*style={{height:'300px'}}*/}
+                            {/*/>*/}
+                            <JoditEditor
+                                ref={editor}
+                                value={content}
+                                config={config}
+                                onChange={newContent=>{setContent(newContent)}}
+                            />
                         </div>
                         <div className={'my-3'}>
                             <Label for={'category'}>Category</Label>
