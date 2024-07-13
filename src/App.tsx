@@ -12,6 +12,9 @@ import About from "./pages/About.tsx";
 import Service from "./pages/Service.tsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from "./pages/user-routes/Dashboard.tsx";
+import PrivateRoute from "./component/PrivateRoute.tsx";
+import ProfileInfo from "./pages/user-routes/ProfileInfo.tsx";
 
 
 function App() {
@@ -20,11 +23,17 @@ function App() {
    <BrowserRouter>
        <ToastContainer position={'bottom-center'}/>
        <Routes>
-           <Route path={"/"} element={<Home/>}/>
+           <Route path={"/home"} element={<Home/>}/>
            <Route path={"/login"} element={<Login/>}/>
            <Route path={"/signup"} element={<Signup/>}/>
            <Route path={"/about"} element={<About/>}/>
            <Route path={"/services"} element={<Service/>}/>
+           <Route path={"/user"} element={<PrivateRoute/>}>
+               <Route path={"dashboard"} element={<Dashboard/>}/>
+               <Route path={"profile"} element={<ProfileInfo/>}/>
+           </Route>
+
+
        </Routes>
    </BrowserRouter>
   )

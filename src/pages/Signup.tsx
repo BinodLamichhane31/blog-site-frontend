@@ -1,5 +1,18 @@
 import Base from "../component/Base.tsx";
-import {Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
+import {
+    Button,
+    Card,
+    CardBody,
+    CardHeader,
+    Col,
+    Container,
+    Form,
+    FormFeedback,
+    FormGroup,
+    Input,
+    Label,
+    Row
+} from "reactstrap";
 import {useEffect, useState} from "react";
 import './Forms.css';
 import {signUp} from "../services/user_service.tsx";
@@ -24,6 +37,7 @@ function Signup() {
 
     const submitForm =(event)=>{
         event.preventDefault()
+
         console.log(data)
         signUp(data).then((response)=>{
             console.log(response)
@@ -38,6 +52,10 @@ function Signup() {
         }).catch((error)=>{
             console.log(error)
             console.log("Error Log");
+            setError({
+                errors: error,
+                isError: true
+            })
         });
     };
     return(
@@ -58,21 +76,33 @@ function Signup() {
                                                id={'fullName'}
                                                onChange={(e)=>handleChange(e,"name")}
                                                value={data.name}
+                                               invalid={error.errors?.response?.data?.name ?true:false}
                                         />
+                                        <FormFeedback>
+                                            {error.errors?.response?.data?.name}
+                                        </FormFeedback>
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="email">Email</Label>
-                                        <Input type={'email'} id={"email"}
+                                        <Input type={'text'} id={"email"}
                                                onChange={(e)=>handleChange(e,'email')}
                                                value={data.email}
+                                               invalid={error.errors?.response?.data?.email ?true:false}
                                         />
+                                        <FormFeedback>
+                                            {error.errors?.response?.data?.email}
+                                        </FormFeedback>
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="password" >Password</Label>
                                         <Input type={'password'} id={'password'}
                                                onChange={(e)=>handleChange(e,'password')}
                                                value={data.password}
+                                               invalid={error.errors?.response?.data?.password ?true:false}
                                         />
+                                        <FormFeedback>
+                                            {error.errors?.response?.data?.password}
+                                        </FormFeedback>
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="about" >About</Label>
@@ -80,7 +110,11 @@ function Signup() {
                                                style={{height:"150px"}}
                                                onChange={(e)=>handleChange(e,'about')}
                                                value={data.about}
+                                               invalid={error.errors?.response?.data?.about ?true:false}
                                         />
+                                        <FormFeedback>
+                                            {error.errors?.response?.data?.about}
+                                        </FormFeedback>
                                     </FormGroup>
                                     <Container className={'text-center'}>
                                         <Button className="custom-button" outline>Sign Up</Button>
