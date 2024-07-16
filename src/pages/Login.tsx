@@ -35,8 +35,6 @@ function Login() {
                 console.log("Login detail is saved to local storage")
                 navigate("/user/dashboard")
 
-
-
             })
             toast.success("Login successful")
         }).catch(error=>{
