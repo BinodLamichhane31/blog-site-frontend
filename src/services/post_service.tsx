@@ -6,11 +6,21 @@ export const createPost = (postData) => {
 };
 
 export const loadAllPosts = (pageNumber,pageSize) => {
-    return myAxios.get(`posts?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+    return myAxios.get(`posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`)
         .then((response) => response.data)
         .catch((error) => {
             console.error('Error loading posts:', error);
             throw error;
         });
 };
+
+export const loadPost = (postId) => {
+    return myAxios.get("/posts/"+postId)
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error('Error loading post:', error);
+            throw error;
+        });
+};
+
 

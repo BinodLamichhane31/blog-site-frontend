@@ -1,4 +1,5 @@
-import {Button, Card, CardBody, CardText} from "reactstrap";
+import { Card, CardBody, CardText} from "reactstrap";
+import {Link} from "react-router-dom";
 
 function Blog({post={title:"Default title",content:"Default content"}}) {
     return(
@@ -8,7 +9,7 @@ function Blog({post={title:"Default title",content:"Default content"}}) {
                 <CardText dangerouslySetInnerHTML={{__html:post.content.substring(0,50)+"..."}}>
                 </CardText>
                 <div>
-                    <Button className={'custom-button'} outline>Read More</Button>
+                    <Link className={'btn custom-button'} to={'/post/'+post.postId}>Read More</Link>
                 </div>
             </CardBody>
         </Card>
