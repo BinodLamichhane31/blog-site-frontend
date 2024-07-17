@@ -1,12 +1,16 @@
 import Base from "../component/Base.tsx";
+import BlogsFeed from "../component/BlogsFeed.tsx";
+import {useEffect} from "react";
+import {Container} from "reactstrap";
 
 function Home() {
+
+
     return(
         <Base>
-            <div>
-                <h1>This is home page</h1>
-                <p>Welcome to home page</p>
-            </div>
+            <Container className={'mt-3'}>
+                <BlogsFeed/>
+            </Container>
         </Base>
 
     )

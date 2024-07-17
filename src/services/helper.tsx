@@ -15,12 +15,13 @@ privateAxios.interceptors.request.use(config => {
     const token = getToken();
     console.log('Token:', token);
     if (token) {
-        if (!config.headers) {
-            config.headers = {};
-        }
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers = {
+            ...config.headers,
+            Authorization: `Bearer ${token}`
+        };
     } else {
         console.warn('No token found');
     }
+    console.log('Request config:', config);
     return config;
 }, error => Promise.reject(error));
