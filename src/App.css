@@ -1,0 +1,10 @@
+.comment-section {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.comments-header {
+    display: flex;
+    justify-content: space-between; /* Space items evenly */
+    align-items: center; /* Vertically align content */
+}

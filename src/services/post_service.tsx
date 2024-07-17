@@ -23,4 +23,13 @@ export const loadPost = (postId) => {
         });
 };
 
+export const createComment = (comment,postId) => {
+    return privateAxios.post(`/post/${postId}/comments`,comment)
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error('Error creating comment:', error);
+            throw error;
+        });
+};
+
 
