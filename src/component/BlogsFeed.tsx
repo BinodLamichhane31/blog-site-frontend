@@ -1,7 +1,7 @@
 // BlogsFeed.tsx
 import React, { useEffect, useState } from "react";
 import { loadAllPosts } from "../services/post_service.tsx";
-import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
+import {Col, Container, Input, Pagination, PaginationItem, PaginationLink, Row} from "reactstrap";
 import Blog from "./Blog.tsx";
 import { toast } from "react-toastify";
 import './blog.css'; // Import the CSS file
@@ -41,9 +41,12 @@ function BlogsFeed() {
         <div className='container-fluid'>
             <Row>
                 <Col md={{ size: 10, offset:1 }}>
-                    <h5>Total blogs: {postContent ? postContent.totalElements : 'Loading...'}</h5>
-                        <div className="d-flex flex-wrap justify-content-center">
-                            {postContent.content.map((post) => (
+                    <div>
+                        <h5>Total blogs: {postContent ? postContent.totalElements : 'Loading...'}</h5>
+                        <Input type={'search'} placeholder={"Enter here to search"} />
+                    </div>
+                    <div className="d-flex flex-wrap justify-content-center">
+                    {postContent.content.map((post) => (
                                 <Blog post={post} key={post.id}/>
                             ))}
                         </div>
