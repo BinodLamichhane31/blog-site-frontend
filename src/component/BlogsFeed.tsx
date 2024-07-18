@@ -21,7 +21,7 @@ function BlogsFeed() {
         changePage(currentPage)
     }, [currentPage]);
 
-    const changePage = (pageNumber=0,pageSize=5) => {
+    const changePage = (pageNumber=0,pageSize=12) => {
 
         if(pageNumber>postContent.pageNumber && postContent.lastPage){
             return;
@@ -42,13 +42,21 @@ function BlogsFeed() {
         <div className={'container-fluid'}>
             <Row>
                 <Col md={{size:10,offset:1}}>
-                    <h1>Blogs Count {postContent ? postContent.totalElements : 'Loading...'}</h1>
+                    <h5>Total blogs: {postContent ? postContent.totalElements : 'Loading...'}</h5>
+                    <Row>
                     {
                         postContent.content.map((post)=>(
-                            <Blog key={post.postId} post={post} />
+                            <Col xs="12" sm="6" md="4" key={post.postId} className="mb-4">
+                                <Container className="blog-container">
+                                    <Blog post={post} />
+                                </Container>
+                            </Col>
                         ))
                     }
-                    {<Container className='mt-3'>
+                    </Row>
+                    {
+                        <div>
+                        <Container className="mt-3 d-flex justify-content-center">
                         <Pagination >
                             <PaginationItem onClick={() => changePage(postContent.pageNumber-1)} disabled={postContent.pageNumber == 0}>
                                 <PaginationLink previous>
@@ -79,7 +87,8 @@ function BlogsFeed() {
                             </PaginationItem>
                         </Pagination>
 
-                    </Container>}
+                    </Container>
+                        </div>}
 
                 </Col>
             </Row>

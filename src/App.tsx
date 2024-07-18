@@ -20,26 +20,26 @@ import BlogPage from "./pages/BlogPage.tsx";
 
 function App() {
 
-  return (
-   <BrowserRouter>
-       <ToastContainer position={'bottom-center'}/>
-       <Routes>
-           <Route path="/" element={<Navigate to="/home" />} />
-           <Route path={"/home"} element={<Home/>}/>
-           <Route path={"/login"} element={<Login/>}/>
-           <Route path={"/signup"} element={<Signup/>}/>
-           <Route path={"/about"} element={<About/>}/>
-           <Route path={"/services"} element={<Service/>}/>
-           <Route path={"/post/:postId"} element={<BlogPage/>}/>
-           <Route path={"/user"} element={<PrivateRoute/>}>
-               <Route path={"dashboard"} element={<Dashboard/>}/>
-               <Route path={"profile"} element={<ProfileInfo/>}/>
-           </Route>
+    return (
+        <BrowserRouter>
+            <ToastContainer position={'bottom-center'}/>
+            <Routes>
+                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path={"/home"} element={<Home/>}/>
+                <Route path={"/login"} element={<Login/>}/>
+                <Route path={"/signup"} element={<Signup/>}/>
+                <Route path={"/about"} element={<About/>}/>
+                <Route path={"/services"} element={<Service/>}/>
+                <Route path={"/post/:postId"} element={<BlogPage/>}/>
+                <Route path={"/user"} element={<PrivateRoute/>}>
+                    <Route path={"dashboard"} element={<Dashboard/>}/>
+                    <Route path={"profile"} element={<ProfileInfo/>}/>
+                </Route>
 
 
-       </Routes>
-   </BrowserRouter>
-  )
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App

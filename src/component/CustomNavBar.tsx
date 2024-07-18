@@ -39,35 +39,36 @@ function CustomNavBar() {
     }
     return (
         <div>
-            <Navbar  style={{ backgroundColor: '#0ABAB5' }}
+            <Navbar  style={{ backgroundColor: '#81d8d0' }}
             expand={"md"} className={"px-3"}>
-                <NavbarBrand tag={ReactLink} to="/home">BlogEcho</NavbarBrand>
+                <NavbarBrand tag={ReactLink} to="/">BlogEcho</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
                         <NavItem>
                             <NavLink tag={ReactLink} to="/home">Blogs</NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink tag = {ReactLink} to="/about">
-                                About
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag = {ReactLink} to="/services">
-                                Services
-                            </NavLink>
-                        </NavItem>
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
-                                Options
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                                <DropdownItem>Contact Us</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>Reset</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
+                        {
+                            login &&(
+                                <>
+                                    <NavItem>
+                                        <NavLink tag = {ReactLink} to="/user/dashboard">
+                                            Create
+                                        </NavLink>
+                                    </NavItem>
+                                </>
+                            )
+                        }
+                        {/*<UncontrolledDropdown nav inNavbar>*/}
+                        {/*    <DropdownToggle nav caret>*/}
+                        {/*        Options*/}
+                        {/*    </DropdownToggle>*/}
+                            {/*<DropdownMenu right>*/}
+                            {/*    <DropdownItem>Contact Us</DropdownItem>*/}
+                            {/*    <DropdownItem divider />*/}
+                            {/*    <DropdownItem>Reset</DropdownItem>*/}
+                            {/*</DropdownMenu>*/}
+                        {/*</UncontrolledDropdown>*/}
                     </Nav>
                     <Nav navbar>
                         {
@@ -76,12 +77,6 @@ function CustomNavBar() {
                                     <NavItem>
                                         <NavLink tag = {ReactLink} to="/user/profile">
                                             Profile
-                                        </NavLink>
-                                    </NavItem>
-
-                                    <NavItem>
-                                        <NavLink tag = {ReactLink} to="/user/dashboard">
-                                            {user.name}
                                         </NavLink>
                                     </NavItem>
 

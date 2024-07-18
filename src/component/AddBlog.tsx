@@ -7,6 +7,7 @@ import {getCurrentUserDetails} from "../auth";
 import {toast} from "react-toastify";
 
 
+
 const AddBlog = ()=>{
     const editor = useRef(null)
     const [post,setPost] = useState({
@@ -66,7 +67,7 @@ const AddBlog = ()=>{
     }
 
     return(
-        <div className='wrapper mt-3'>
+        <div className='wrapper mt-5'>
             <Card className={'shadow'}>
                 <CardHeader className={"custom-card-header"}><h3>What's on your mind?</h3>
                 </CardHeader>
@@ -81,7 +82,7 @@ const AddBlog = ()=>{
 
                             />
                         </div>
-                        <div className={'my-3'}>
+                        <div  className={'my-3'}>
                             <Label for={'content'}>Content</Label>
                             {/*<Input type={'textarea'} id={'content'}*/}
                             {/*       placeholder={'Enter here'}*/}

@@ -57,7 +57,7 @@ function Login() {
     return(
         <Base>
             <Container>
-                <Row className={'mt-3'}>
+                <Row className={'mt-4'}>
                     <Col sm={{size:6,offset:3}}>
                         <Card className={'custom-card'} outline>
                             <CardHeader className={'custom-card-header'}>

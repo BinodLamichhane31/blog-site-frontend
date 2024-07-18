@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 import {createComment, loadPost} from "../services/post_service.tsx";
 import {toast} from "react-toastify";
 import {BASE_URL} from "../services/helper.tsx";
-import {loginUser} from "../services/user_service.tsx";
 import {isLoggedIn} from "../auth";
 
 const BlogPage = ()=>{
@@ -24,9 +23,14 @@ const BlogPage = ()=>{
         })
     },[])
 
-    const printDate=(numbers)=>{
-        return new Date(numbers).toLocaleDateString()
-    }
+    const printDate = (numbers) => {
+        const date = new Date(numbers);
+        return date.toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    };
 
     const submitComment=()=>{
         if(!isLoggedIn()){
@@ -53,7 +57,7 @@ const BlogPage = ()=>{
     return(
         <Base>
             <Container className={'mt-4'}>
-                <Link to={'/'}>Home</Link> / {post && (<Link to={""}>{post.title}</Link>)}
+                <Link to={'/home'}>Blogs</Link> / {post && (<Link to={""}>{post.title}</Link>)}
                 <Row>
                     <Col md={{size:12}}>
                         <Card className={'mt-3 ps-2 shadow-sm'}>
@@ -70,7 +74,7 @@ const BlogPage = ()=>{
                                         <CardText className={'mt-3'}>
                                             <h1>{post.title}</h1>
                                         </CardText>
-                                        <div className={'image-container mt-4 border-0'} style={{maxWidth:'%'}}>
+                                        <div className={'image-container mt-4 border-0'} style={{maxWidth:'100%'}}>
                                             <img className={'img-fluid'} src={BASE_URL+"/post/image/"+post.imageName} alt={""}/>
                                         </div>
                                         <CardText className={'mt-4'} dangerouslySetInnerHTML={{__html:post.content}}>
@@ -111,8 +115,11 @@ const BlogPage = ()=>{
                                 {post?.comments && post.comments.map((comment: any, index: number) => (
                                     <Card key={index} className={'border-0'}>
                                         <CardBody>
+                                            <div className="d-flex justify-content-between">
+                                                <h6>{comment.userName}</h6><span className={'text-muted'}>{printDate(comment.date)}</span>
+                                            </div>
                                             <CardText>
-                                                {comment.content}
+                                                <p>{comment.content}</p>
                                             </CardText>
                                         </CardBody>
                                         <div className={'divider'}

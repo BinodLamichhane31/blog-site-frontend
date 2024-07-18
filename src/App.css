@@ -3,8 +3,78 @@
     align-items: center;
     padding: 5px;
 }
+.blog-card {
+    background: #B4F5F0;
+}
+.blog-container {
+    max-width: 250px; /* Adjust the max-width to decrease the size of the Blog */
+    margin: 0 auto; /* Center the Blog container */
+}
+
 .comments-header {
     display: flex;
     justify-content: space-between; /* Space items evenly */
     align-items: center; /* Vertically align content */
+}
+.landing-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.landing-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.6), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.6), transparent 40%);
+    animation: animateBackground 10s infinite linear;
+    z-index: -1;
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0 0, 100% 100%;
+    }
+    100% {
+        background-position: 100% 100%, 0 0;
+    }
+}
+
+.text-center {
+    z-index: 1;
+}
+
+.landing-title {
+    font-size: 3rem;
+    color: #333;
+}
+
+.landing-subtitle {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.landing-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.landing-button:hover {
+    transform: scale(1.1);
 }
