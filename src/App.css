@@ -6,10 +6,8 @@
 .blog-card {
     background: #B4F5F0;
 }
-.blog-container {
-    max-width: 250px; /* Adjust the max-width to decrease the size of the Blog */
-    margin: 0 auto; /* Center the Blog container */
-}
+
+
 
 .comments-header {
     display: flex;

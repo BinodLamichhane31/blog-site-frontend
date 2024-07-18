@@ -2,7 +2,7 @@ import {Button, Card, CardBody, CardHeader, Container, Form, Input, Label} from 
 import {loadAllCategories} from "../services/category_service.tsx";
 import {useEffect, useRef, useState} from "react";
 import JoditEditor from 'jodit-react';
-import {createPost as doCreatePost} from "../services/post_service.tsx";
+import {createPost as doCreatePost, uploadImage} from "../services/post_service.tsx";
 import {getCurrentUserDetails} from "../auth";
 import {toast} from "react-toastify";
 
@@ -15,7 +15,9 @@ const AddBlog = ()=>{
         content:'',
         categoryId:''
     })
-    
+    const [image,setImage] = useState(null)
+
+
     const [user,setUser] = useState(undefined)
     const [categories, setCategories] = useState([])
 
@@ -48,22 +50,52 @@ const AddBlog = ()=>{
             toast.error("Content is required.")
             return;
         }
+
+        if (!image) {
+            toast.error("Please select an image.")
+            return;
+        }
         if(post.categoryId.trim()==''){
             toast.error("Select the catagory.")
             return;
         }
         post['userId'] = user.id
         doCreatePost(post).then((data)=>{
-            toast.success("Post created.")
-            setPost({
-                title: '',
-                content: '',
-                categoryId: ''
+            uploadImage(image,data.postId).then(data=>{
+                toast.success("Post created successfully.")
+                setPost({
+                    title: '',
+                    content: '',
+                    categoryId: ''
+                })
+                setImage(null)
+            }).catch(error=>{
+                toast.error("Error uploading image.")
+                console.log(error)
             })
         }).catch((error)=>{
             toast.error("Error creating post.")
+            console.log(error)
+
         })
 
+    }
+    const handleFileChange = (event) => {
+        const file = event.target.files[0]
+        if (file && (file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/jpg')) {
+            setImage(file)
+        } else {
+            toast.error("Please select a valid image file (png, jpg, jpeg).")
+        }
+
+    }
+    const resetFormFields = () => {
+        setPost({
+            title: '',
+            content: '',
+            categoryId: ''
+        })
+        setImage(null)
     }
 
     return(
@@ -93,6 +125,10 @@ const AddBlog = ()=>{
                                 value={post.content}
                                 onChange={contentFieldChanged}
                             />
+                            <div className={'mt-3'}>
+                                <Label for={'image'}>Select Post Banner</Label>
+                                <Input id={'image'} type={'file'} onChange={handleFileChange}/>
+                            </div>
                         </div>
                         <div className={'my-3'}>
                             <Label for={'category'}>Category</Label>

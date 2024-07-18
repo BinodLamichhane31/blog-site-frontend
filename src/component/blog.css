@@ -1,0 +1,25 @@
+.blog-component {
+    width: 300px;
+    height: auto;
+    overflow: hidden;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blog-image {
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

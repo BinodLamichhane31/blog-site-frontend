@@ -32,4 +32,20 @@ export const createComment = (comment,postId) => {
         });
 };
 
+export const uploadImage = (image,postId) => {
+    const formDate = new FormData()
+    formDate.append("image",image)
+    return privateAxios.post(`/post/image/upload/${postId}`,formDate,{
+        headers:{
+            'Content-Type':'multipart/form-data'
+        }
+
+    })
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error('Error creating comment:', error);
+            throw error;
+        });
+};
+
 

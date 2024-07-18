@@ -16,6 +16,7 @@ import Dashboard from "./pages/user-routes/Dashboard.tsx";
 import PrivateRoute from "./component/PrivateRoute.tsx";
 import ProfileInfo from "./pages/user-routes/ProfileInfo.tsx";
 import BlogPage from "./pages/BlogPage.tsx";
+import Hero from "./pages/Hero.tsx";
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         <BrowserRouter>
             <ToastContainer position={'bottom-center'}/>
             <Routes>
-                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path="/" element={<Hero/>} />
                 <Route path={"/home"} element={<Home/>}/>
                 <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/signup"} element={<Signup/>}/>
