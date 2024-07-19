@@ -71,7 +71,7 @@ export const deletePostService = (postId) => {
     return privateAxios.delete(url)
         .then((response) => response.data)
         .catch((error) => {
-            console.error('Error loading posts:', error);
+            console.error('Error deleting post:', error);
             throw error;
         });
 };

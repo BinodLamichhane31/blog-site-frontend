@@ -48,8 +48,10 @@ function BlogsFeed() {
                 .then((res) => {
                     console.log(res);
                     toast.success("Post deleted.");
-                    changePage(currentPage, selectedCategory);
-                })
+                    setPostContent(prevState => ({
+                        ...prevState,
+                        content: prevState.content.filter(p => p.postId !== post.postId)
+                    }));                })
                 .catch((error) => {
                     console.log(error);
                     toast.error("Post deletion failure.");
