@@ -5,6 +5,7 @@ import JoditEditor from 'jodit-react';
 import {createPost as doCreatePost, uploadImage} from "../services/post_service.tsx";
 import {getCurrentUserDetails} from "../auth";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -52,7 +53,7 @@ const AddBlog = ()=>{
         }
 
         if (!image) {
-            toast.error("Please select an image.")
+            toast.error("Please select a valid image file (png, jpg, jpeg)")
             return;
         }
         if(post.categoryId.trim()==''){
@@ -62,13 +63,14 @@ const AddBlog = ()=>{
         post['userId'] = user.id
         doCreatePost(post).then((data)=>{
             uploadImage(image,data.postId).then(data=>{
+                // setPost({
+                //     title: '',
+                //     content: '',
+                //     categoryId: ''
+                // })
+                // setImage(null)
+                window.location.reload();
                 toast.success("Post created successfully.")
-                setPost({
-                    title: '',
-                    content: '',
-                    categoryId: ''
-                })
-                setImage(null)
             }).catch(error=>{
                 toast.error("Error uploading image.")
                 console.log(error)
@@ -91,7 +93,7 @@ const AddBlog = ()=>{
     }
 
     return(
-        <div className='wrapper mt-5 mb-5'>
+        <div className='wrapper mt-5'>
             <Card className={'shadow'}>
                 <CardHeader className={"custom-card-header"}><h3>What's on your mind?</h3>
                 </CardHeader>

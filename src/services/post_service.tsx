@@ -11,7 +11,7 @@ export const loadAllPosts = (pageNumber, pageSize, categoryId) => {
         url = `category/${categoryId}/posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`;
     }
     console.log('API request URL:', url);  // Log the API request URL
-    return myAxios.get(url)
+    return privateAxios.get(url)
         .then((response) => response.data)
         .catch((error) => {
             console.error('Error loading posts:', error);
@@ -53,6 +53,15 @@ export const uploadImage = (image,postId) => {
         });
 };
 
+export const loadPostsByUser = (userId,pageNumber, pageSize) => {
+    let url = `/user/${userId}/posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`;
 
+    return privateAxios.get(url)
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error('Error loading posts:', error);
+            throw error;
+        });
+};
 
 
