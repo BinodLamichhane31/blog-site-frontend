@@ -18,6 +18,7 @@ import {loadAllPosts, loadPostsByUser} from "../../services/post_service.tsx";
 import {toast} from "react-toastify";
 import Category from "../../component/Category.tsx";
 import Blog from "../../component/Blog.tsx";
+import MyBlogs from "../../component/MyBlogs.tsx";
 const Dashboard =()=>{
     const [user,setUser] = useState([])
     const [postContent, setPostContent] = useState({
@@ -44,7 +45,7 @@ const Dashboard =()=>{
             return;
         }
 
-        loadPostsByUser(getCurrentUserDetails()?.id,pageNumber, pageSize,categoryId).then((data) => {
+        loadPostsByUser(getCurrentUserDetails()?.id,pageNumber, pageSize).then((data) => {
             setPostContent(data);
             window.scroll(0, 0);
         }).catch((error) => {
@@ -56,62 +57,7 @@ const Dashboard =()=>{
         <Base>
             <Container>
                 <AddBlog/>
-                <Card className={'mb-5 shadow'}>
-                    <CardHeader className={"custom-card-header"}>
-                        <h3>My Blogs</h3>
-                    </CardHeader>
-                    <CardBody>
-                            <Row>
-                                <Col >
-                                    <div>
-                                        <h5 className={'text-center'}>Total blogs: {postContent ? postContent.totalElements : 'Loading...'}</h5>
-                                        {/*<Input type={'search'} placeholder={"Enter here to search"}/>*/}
-                                    </div>
-                                    <div className="d-flex flex-wrap justify-content-center">
-                                        {postContent.content.length > 0 ? (
-                                            postContent.content.map((post) => (
-                                                <Blog key={post.postId} post={post}/>
-                                            ))
-                                        ) : (
-                                            <p className={'mt-3'}>No posts available.</p>
-                                        )}
-                                    </div>
-                                    {postContent.content.length > 0 && (
-                                        <Container className="mt-3 d-flex justify-content-center">
-                                            <Pagination>
-                                                <PaginationItem
-                                                    onClick={() => changePage(postContent.pageNumber - 1, selectedCategory)}
-                                                    disabled={postContent.pageNumber === 0}>
-                                                    <PaginationLink previous>
-                                                        Previous
-                                                    </PaginationLink>
-                                                </PaginationItem>
-
-                                                {[...Array(postContent.totalPages)].map((item, index) => (
-                                                    <PaginationItem onClick={() => changePage(index, selectedCategory)}
-                                                                    active={index === postContent.pageNumber}
-                                                                    key={index}>
-                                                        <PaginationLink>
-                                                            {index + 1}
-                                                        </PaginationLink>
-                                                    </PaginationItem>
-                                                ))}
-
-                                                <PaginationItem
-                                                    onClick={() => changePage(postContent.pageNumber + 1, selectedCategory)}
-                                                    disabled={postContent.lastPage}>
-                                                    <PaginationLink next>
-                                                        Next
-                                                    </PaginationLink>
-                                                </PaginationItem>
-                                            </Pagination>
-                                        </Container>
-                                    )}
-                                </Col>
-                            </Row>
-
-                    </CardBody>
-                </Card>
+                <MyBlogs/>
 
             </Container>
         </Base>

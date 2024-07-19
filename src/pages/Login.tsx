@@ -33,7 +33,7 @@ function Login() {
             console.log(data)
             doLogin(data,()=>{
                 console.log("Login detail is saved to local storage")
-                navigate("/user/dashboard")
+                navigate("/home")
 
             })
             toast.success("Login successful")

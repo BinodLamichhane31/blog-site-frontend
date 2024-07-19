@@ -65,3 +65,16 @@ export const loadPostsByUser = (userId,pageNumber, pageSize) => {
 };
 
 
+export const deletePostService = (postId) => {
+    let url = `/posts/${postId}`;
+
+    return privateAxios.delete(url)
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error('Error loading posts:', error);
+            throw error;
+        });
+};
+
+
+

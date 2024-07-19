@@ -15,6 +15,8 @@ import {
     NavbarText,
 } from 'reactstrap';
 import {doLogOut, getCurrentUserDetails, isLoggedIn} from "../auth";
+import {deletePostService} from "../services/post_service.tsx";
+import {toast} from "react-toastify";
 
 function CustomNavBar() {
 
@@ -31,11 +33,16 @@ function CustomNavBar() {
 
     },[login])
 
-    const logout=()=>{
-        doLogOut(()=>{
-            setLogin(false)
-            navigate("/home")
-        })
+
+    function logout() {
+        const confirmDelete = window.confirm("Are you sure you want to logout?");
+        if (confirmDelete) {
+            doLogOut(()=>{
+                setLogin(false)
+                navigate("/home")
+            })
+            toast('Logged out.')
+        }
     }
     return (
         <div>

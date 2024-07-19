@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { loadAllPosts } from "../services/post_service.tsx";
+import {deletePostService, loadAllPosts} from "../services/post_service.tsx";
 import { Col, Container, Input, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
 import Blog from "./Blog.tsx";
 import { toast } from "react-toastify";
 import './blog.css';
 import Category from "./Category.tsx";
+
+
 
 function BlogsFeed() {
     const [postContent, setPostContent] = useState({
@@ -39,6 +41,22 @@ function BlogsFeed() {
         });
     };
 
+    function deletePost(post) {
+        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+        if (confirmDelete) {
+            deletePostService(post.postId)
+                .then((res) => {
+                    console.log(res);
+                    toast.success("Post deleted.");
+                    changePage(currentPage, selectedCategory);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toast.error("Post deletion failure.");
+                });
+        }
+    }
+
     return (
         <div className='container-fluid'>
             <Row>
@@ -57,7 +75,7 @@ function BlogsFeed() {
                     <div className="d-flex flex-wrap justify-content-center">
                         {postContent.content.length > 0 ? (
                             postContent.content.map((post) => (
-                                <Blog key={post.postId} post={post} />
+                                <Blog key={post.postId} post={post} deletePost={deletePost}/>
                             ))
                         ) : (
                             <p className={'mt-5'}>No posts available in this category.</p>
