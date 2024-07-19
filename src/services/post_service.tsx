@@ -5,8 +5,13 @@ export const createPost = (postData) => {
         .then((response) => response.data);
 };
 
-export const loadAllPosts = (pageNumber,pageSize) => {
-    return myAxios.get(`posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`)
+export const loadAllPosts = (pageNumber, pageSize, categoryId) => {
+    let url = `posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`;
+    if (categoryId !== null) {
+        url = `category/${categoryId}/posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`;
+    }
+    console.log('API request URL:', url);  // Log the API request URL
+    return myAxios.get(url)
         .then((response) => response.data)
         .catch((error) => {
             console.error('Error loading posts:', error);
@@ -47,5 +52,7 @@ export const uploadImage = (image,postId) => {
             throw error;
         });
 };
+
+
 
 

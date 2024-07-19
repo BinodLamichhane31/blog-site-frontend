@@ -30,3 +30,10 @@
     background-color: #81d8d0;
     color: white;
 }
+
+
+.category-button.selected {
+    background-color: #81d8d0;
+    color: white;
+    border-color: #81d8d0;
+}
