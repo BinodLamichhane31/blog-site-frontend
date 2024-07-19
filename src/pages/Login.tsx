@@ -56,7 +56,7 @@ function Login() {
 
     return(
         <Base>
-            <Container>
+            <Container className={'align-items-center justify-content-center'} style={{height:"570px"}}>
                 <Row className={'mt-4'}>
                     <Col sm={{size:6,offset:3}}>
                         <Card className={'custom-card'} outline>

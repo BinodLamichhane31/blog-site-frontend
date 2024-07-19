@@ -41,12 +41,12 @@ const Base = ({ title = "Welcome to our website", children }) => {
         <div className="container-fluid p-0 m-0">
             <CustomNavBar />
             {children}
-            <footer className="text-white mt-5 py-4" style={{ backgroundColor: '#81d8d0' }}>
+            <footer className="text-white py-4" style={{ backgroundColor: '#81d8d0' }}>
                 <div className="container text-center">
                     <div className="row">
                         <div className="col-md-4">
-                            <h5>Connect with the developer</h5>
-                            <p>Here are my contact details and social links. Feel free to hit me up.</p>
+                            <h3>Blog31</h3>
+                            <p><b>Transform Thoughts into Connections</b></p>
                         </div>
                         <div className="col-md-4">
                             <h5>Social Links</h5>

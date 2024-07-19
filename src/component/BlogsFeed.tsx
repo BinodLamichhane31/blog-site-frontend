@@ -4,7 +4,8 @@ import { loadAllPosts } from "../services/post_service.tsx";
 import {Col, Container, Input, Pagination, PaginationItem, PaginationLink, Row} from "reactstrap";
 import Blog from "./Blog.tsx";
 import { toast } from "react-toastify";
-import './blog.css'; // Import the CSS file
+import './blog.css';
+import Category from "./Category.tsx"; // Import the CSS file
 
 function BlogsFeed() {
     const [postContent, setPostContent] = useState({
@@ -45,9 +46,12 @@ function BlogsFeed() {
                         <h5>Total blogs: {postContent ? postContent.totalElements : 'Loading...'}</h5>
                         <Input type={'search'} placeholder={"Enter here to search"} />
                     </div>
+                    <div className={'mt-3'}>
+                        <Category/>
+                    </div>
                     <div className="d-flex flex-wrap justify-content-center">
                     {postContent.content.map((post) => (
-                                <Blog post={post} key={post.id}/>
+                                <Blog key={post.postId} post={post}/>
                             ))}
                         </div>
                     <Container className="mt-3 d-flex justify-content-center">

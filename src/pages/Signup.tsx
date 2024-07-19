@@ -60,8 +60,8 @@ function Signup() {
     };
     return(
         <Base>
-            <Container>
-                <Row className={'mt-3'}>
+            <Container className={'mb-5'}>
+                <Row className={'mt-5'}>
                     <Col sm={{size:6,offset:3}}>
                         <Card className="custom-card" >
                             <CardHeader className={'custom-card-header'}

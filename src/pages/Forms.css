@@ -18,3 +18,15 @@
     background-color: #0ABAB5;
     color: white;
 }
+
+.category-button {
+    background-color: white;
+    border: 1px solid #81d8d0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.category-button:hover {
+    border: 1px solid #81d8d0;
+    background-color: #81d8d0;
+    color: white;
+}

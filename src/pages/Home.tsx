@@ -1,7 +1,8 @@
 import Base from "../component/Base.tsx";
 import BlogsFeed from "../component/BlogsFeed.tsx";
 import {useEffect} from "react";
-import {Container} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
+import Category from "../component/Category.tsx";
 
 function Home() {
 

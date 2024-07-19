@@ -89,17 +89,9 @@ const AddBlog = ()=>{
         }
 
     }
-    const resetFormFields = () => {
-        setPost({
-            title: '',
-            content: '',
-            categoryId: ''
-        })
-        setImage(null)
-    }
 
     return(
-        <div className='wrapper mt-5'>
+        <div className='wrapper mt-5 mb-5'>
             <Card className={'shadow'}>
                 <CardHeader className={"custom-card-header"}><h3>What's on your mind?</h3>
                 </CardHeader>
@@ -149,7 +141,7 @@ const AddBlog = ()=>{
 
                             </Input>
                         </div>
-                        <Container className={'text-center'}>
+                        <Container className={'text-center mb-5'}>
                             <Button type="submit" className={'custom-button'} outline>Post</Button>
                         </Container>
                     </Form>
