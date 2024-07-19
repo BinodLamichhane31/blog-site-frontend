@@ -56,7 +56,7 @@ const BlogPage = ()=>{
 
     return(
         <Base>
-            <Container className={'mt-4'}>
+            <Container className={'mt-4 mb-5'}>
                 <Link to={'/home'}>Blogs</Link> / {post && (<Link to={""}>{post.title}</Link>)}
                 <Row>
                     <Col md={{size:12}}>

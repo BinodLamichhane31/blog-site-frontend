@@ -39,8 +39,8 @@ function CustomNavBar() {
     }
     return (
         <div>
-            <Navbar  style={{ backgroundColor: '#81d8d0' }}
-            expand={"md"} className={"px-3"}>
+            <Navbar  style={{ backgroundColor: '#81d8d0'}}
+            expand={"md"} className={"px-3 shadow"} fixed="top">
                 <NavbarBrand tag={ReactLink} to="/">BlogEcho</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>

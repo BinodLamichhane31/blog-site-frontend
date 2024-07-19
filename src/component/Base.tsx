@@ -40,10 +40,13 @@ const Base = ({ title = "Welcome to our website", children }) => {
     return (
         <div className="container-fluid p-0 m-0">
             <CustomNavBar />
-            {children}
-            <footer className="text-white py-4" style={{ backgroundColor: '#81d8d0' }}>
+            <div className="content"
+                 style={{paddingTop: '56px'}}> {/* Adjust the padding-top to the height of your navbar */}
+                {children}
+            </div>
+            <footer className="text-white py-4" style={{backgroundColor: '#81d8d0'}}>
                 <div className="container text-center">
-                    <div className="row">
+                <div className="row">
                         <div className="col-md-4">
                             <h3>Blog31</h3>
                             <p><b>Transform Thoughts into Connections</b></p>
