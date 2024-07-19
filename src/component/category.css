@@ -1,1 +1,26 @@
-/**/
+.category-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.category-button {
+    margin-right: 5px;
+}
+
+.category-container::-webkit-scrollbar {
+    height: 2px;
+    background-color: #B4F5F0;
+    border-radius: 100px;
+
+}
+
+.category-container::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 100px;
+}
+
+.category-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
