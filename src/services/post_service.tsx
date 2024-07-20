@@ -76,5 +76,17 @@ export const deletePostService = (postId) => {
         });
 };
 
+export const updatePostService = (post,postId) => {
+    console.log(post)
+    let url = `/posts/${postId}`;
+
+    return privateAxios.put(url,post)
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error('Error updating post:', error);
+            throw error;
+        });
+};
+
 
 

@@ -7,15 +7,9 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText,
+    NavLink, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown,
 } from 'reactstrap';
 import {doLogOut, getCurrentUserDetails, isLoggedIn} from "../auth";
-import {deletePostService} from "../services/post_service.tsx";
 import {toast} from "react-toastify";
 
 function CustomNavBar() {
@@ -41,6 +35,7 @@ function CustomNavBar() {
                 setLogin(false)
                 navigate("/home")
             })
+            window.location.reload()
             toast('Logged out.')
         }
     }
@@ -66,32 +61,42 @@ function CustomNavBar() {
                                 </>
                             )
                         }
-                        {/*<UncontrolledDropdown nav inNavbar>*/}
-                        {/*    <DropdownToggle nav caret>*/}
-                        {/*        Options*/}
-                        {/*    </DropdownToggle>*/}
-                            {/*<DropdownMenu right>*/}
-                            {/*    <DropdownItem>Contact Us</DropdownItem>*/}
-                            {/*    <DropdownItem divider />*/}
-                            {/*    <DropdownItem>Reset</DropdownItem>*/}
-                            {/*</DropdownMenu>*/}
-                        {/*</UncontrolledDropdown>*/}
+
                     </Nav>
                     <Nav navbar>
                         {
                             login && (
                                 <>
-                                    <NavItem>
-                                        <NavLink tag = {ReactLink} to="/user/profile">
-                                            Profile
-                                        </NavLink>
-                                    </NavItem>
+                                    <NavLink className={'text-muted'} tag={ReactLink} to="/user/profile">
+                                        {user.name}
+                                    </NavLink>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                            <img
+                                                src={user?.profilePicture || '/default-profile.png'}
+                                                alt="Profile"
+                                                style={{width: '30px', height: '30px', borderRadius: '50%'}}
+                                            />
+                                        </DropdownToggle>
+                                        <DropdownMenu right>
+                                            <DropdownItem>
+                                                <NavItem>
+                                                    <NavLink tag={ReactLink} to="/user/profile">
+                                                        Profile
+                                                    </NavLink>
+                                                </NavItem>
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem>
+                                                <NavItem>
+                                                    <NavLink onClick={logout}>
+                                                        Logout
+                                                    </NavLink>
+                                                </NavItem>
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
 
-                                    <NavItem>
-                                        <NavLink onClick={logout}>
-                                            Logout
-                                        </NavLink>
-                                    </NavItem>
                                 </>
                             )
                         }

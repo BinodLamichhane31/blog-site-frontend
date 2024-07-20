@@ -23,13 +23,35 @@ function Blog({ post = { id: -1, title: "Default title", content: "Default conte
                     </div>
                 </div>
                 <div className="text-center mt-2">
-                    <Link className="btn custom-button" to={"/post/" + post.postId}>Click Here to Read</Link>
                     {
                         isLoggedIn() && (user && user.id === post.user.id ?
-                            <Button className={'ms-1'} color={'danger'} outline
+                            <Link className="btn custom-button" to={"/post/" + post.postId}>Read Full</Link>
+                            :
+                                <Link className="btn custom-button" to={"/post/" + post.postId}>Click Here to Read</Link>
+                        )
+                    }
+                    {
+                        isLoggedIn() && (user && user.id === post.user.id ?
+                            <Button className={'ms-3'} color={'danger'} outline
                                     onClick={() => deletePost(post)}>
-                                Delete
-                            </Button> : "")
+                                <img
+                                    src={'/delete.png'}
+                                    style={{width: '16px', height: '20px'}}
+                                />
+                            </Button>
+                            : "")
+                    }
+                    {
+                        isLoggedIn() && (user && user.id === post.user.id ?
+                            <Button className={'ms-3'} color={'warning'} outline
+                                    tag={Link} to={`/user/update-blog/${post.postId}`}
+                                    >
+                                <img
+                                    src={'/edit.png'}
+                                    style={{width: '16px', height: '20px'}}
+                                />
+                            </Button>
+                            : "")
                     }
                 </div>
             </CardBody>

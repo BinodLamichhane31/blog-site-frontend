@@ -19,6 +19,7 @@ import {toast} from "react-toastify";
 import Category from "../../component/Category.tsx";
 import Blog from "../../component/Blog.tsx";
 import MyBlogs from "../../component/MyBlogs.tsx";
+import UserProfile from "../../component/UserProfile.tsx";
 const ProfileInfo =()=>{
     const [user,setUser] = useState([])
     const [postContent, setPostContent] = useState({
@@ -55,8 +56,8 @@ const ProfileInfo =()=>{
 
     return(
         <Base>
-            <h1>Profile info</h1>
             <Container className={'mt-5'}>
+                <UserProfile/>
                 <MyBlogs/>
             </Container>
         </Base>

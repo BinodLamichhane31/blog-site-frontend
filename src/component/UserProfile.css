@@ -1,0 +1,28 @@
+.profile-pic {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border-radius: 50%;
+    border: #81d8d0 solid 1px;
+}
+
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.row-custom {
+    justify-content: center;
+    gap: 15px;
+}
+
+.col-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.col-about {
+    margin-top: 20px;
+}

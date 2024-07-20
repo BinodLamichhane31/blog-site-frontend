@@ -5,7 +5,6 @@ import JoditEditor from 'jodit-react';
 import {createPost as doCreatePost, uploadImage} from "../services/post_service.tsx";
 import {getCurrentUserDetails} from "../auth";
 import {toast} from "react-toastify";
-import {useNavigate} from "react-router-dom";
 
 
 
@@ -63,14 +62,17 @@ const AddBlog = ()=>{
         post['userId'] = user.id
         doCreatePost(post).then((data)=>{
             uploadImage(image,data.postId).then(data=>{
-                // setPost({
-                //     title: '',
-                //     content: '',
-                //     categoryId: ''
-                // })
-                // setImage(null)
-                window.location.reload();
+                setPost({
+                    title: '',
+                    content: '',
+                    categoryId: ''
+                })
+                setImage(null)
                 toast.success("Post created successfully.")
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
+
             }).catch(error=>{
                 toast.error("Error uploading image.")
                 console.log(error)

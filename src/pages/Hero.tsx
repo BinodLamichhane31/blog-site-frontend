@@ -1,5 +1,6 @@
 import Base from "../component/Base.tsx";
 import {Button, Container} from "reactstrap";
+import {Link} from "react-router-dom";
 
 function Hero() {
 
@@ -11,8 +12,14 @@ function Hero() {
                     <h1 className="landing-title">Welcome to Blog31</h1>
                     <p className="landing-subtitle">Discover and share amazing stories with the world.</p>
                     <div className="button-group">
-                        <Button color='primary'  className="landing-button" outline>Create Post</Button>
-                        <Button color="secondary" className="landing-button" outline>Explore Posts</Button>
+                        <Button  className="custom-button" outline
+                                 tag={Link}
+                                 to={'/home'}
+                        >Explore</Button>
+                        <Button color={"primary"}  className="landing-button"
+                                tag={Link}
+                                to={'/user/dashboard'}
+                        >Create</Button>
                     </div>
                 </Container>
             </div>

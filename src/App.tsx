@@ -17,6 +17,7 @@ import PrivateRoute from "./component/PrivateRoute.tsx";
 import ProfileInfo from "./pages/user-routes/ProfileInfo.tsx";
 import BlogPage from "./pages/BlogPage.tsx";
 import Hero from "./pages/Hero.tsx";
+import UpdateBlog from "./component/UpdateBlog.tsx";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                 <Route path={"/user"} element={<PrivateRoute/>}>
                     <Route path={"dashboard"} element={<Dashboard/>}/>
                     <Route path={"profile"} element={<ProfileInfo/>}/>
+                    <Route path={"update-blog/:postId"} element={<UpdateBlog/>}/>
                 </Route>
 
 

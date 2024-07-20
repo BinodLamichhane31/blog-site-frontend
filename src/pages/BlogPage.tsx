@@ -63,12 +63,15 @@ const BlogPage = ()=>{
                             {
                                 (post) &&(
                                     <CardBody>
-                                        <CardText>Posted By <b>{post.user.name}</b> on <b>{printDate(post.createdDate)}</b></CardText>
-                                        <CardText className={'mt-3'}>
-                                            <span className={'text-muted'}>{post.category.categoryTitle}</span>
-                                        </CardText>
+                                        <div>
+                                            <CardText>By <b>{post.user.name}</b> on <span className={'text-muted'}>{printDate(post.createdDate)}</span></CardText>
+                                            <CardText className={'text-muted'}></CardText>
+                                            <CardText>
+                                                <span className={'text-muted'}>{post.category.categoryTitle}</span>
+                                            </CardText>
+                                        </div>
 
-                                        <div className={'divider'} style={{width:'100%',height:'1px',background:'#e2e2e2'}}></div>
+                                        <div className={'divider mt-3'} style={{width:'100%',height:'1px',background:'#e2e2e2'}}></div>
 
                                         <CardText className={'mt-3'}>
                                             <h1>{post.title}</h1>
@@ -112,21 +115,22 @@ const BlogPage = ()=>{
                                 <div className={'divider'}
                                      style={{width: '100%', height: '1px', background: '#e2e2e2'}}></div>
                                 {post?.comments && post.comments.map((comment: any, index: number) => (
-                                    <Card key={index} className={'border-0'}>
+                                    <Card key={index} className={'border mt-2 rounded-3'}>
                                         <CardBody>
                                             <div className="d-flex justify-content-between">
-                                                <h6>{comment.userName}</h6><span className={'text-muted'}>{printDate(comment.date)}</span>
+                                                <h6>{comment.userName}</h6><span
+                                                className={'text-muted'}>{printDate(comment.date)}</span>
                                             </div>
-                                            <CardText>
+                                            <div className={'divider mb-2'}
+                                                 style={{
+                                                     width: '100%',
+                                                     height: '0.5px',
+                                                     background: '#e2e2e2'
+                                                 }}></div>
+                                            <CardText className={'text-muted'}>
                                                 <p>{comment.content}</p>
                                             </CardText>
                                         </CardBody>
-                                        <div className={'divider'}
-                                             style={{
-                                                 width: '100%',
-                                                 height: '0.5px',
-                                                 background: '#e2e2e2'
-                                             }}></div>
                                     </Card>
 
 
