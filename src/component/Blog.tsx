@@ -24,11 +24,8 @@ function Blog({ post = { id: -1, title: "Default title", content: "Default conte
                 </div>
                 <div className="text-center mt-2">
                     {
-                        isLoggedIn() && (user && user.id === post.user.id ?
-                            <Link className="btn custom-button" to={"/post/" + post.postId}>Read Full</Link>
-                            :
-                                <Link className="btn custom-button" to={"/post/" + post.postId}>Click Here to Read</Link>
-                        )
+                        <Link className="btn custom-button" to={"/post/" + post.postId}>Read Full Blog</Link>
+
                     }
                     {
                         isLoggedIn() && (user && user.id === post.user.id ?

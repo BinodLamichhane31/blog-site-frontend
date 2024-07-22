@@ -13,6 +13,10 @@ export const doLogin=(data,next)=>{
     next()
 };
 
+export const doReLogin = (data) => {
+    localStorage.setItem("data", JSON.stringify(data));
+};
+
 export const doLogOut=(next)=>{
     localStorage.removeItem("data");
     next()
@@ -33,6 +37,8 @@ export const getToken=()=>{
         return null;
     }
 };
+
+
 
 
 

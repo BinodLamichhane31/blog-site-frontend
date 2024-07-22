@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardBody, CardHeader, Label, Row, Col, Button, Form, FormGroup, Input } from 'reactstrap';
 import './UserProfile.css';
-import { getCurrentUserDetails } from '../auth';
+import { updateUserDetails } from '../services/user_service';
+
+import {doLogin, doReLogin, getCurrentUserDetails} from '../auth';
+import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 function UserProfile() {
     const [user, setUser] = useState({});
     const [editMode, setEditMode] = useState(false);
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        about: ''
+        about: '',
     });
 
     useEffect(() => {
-        const userDetails = getCurrentUserDetails();
-        setUser(userDetails);
-        setFormData({
-            name: userDetails.name,
-            email: userDetails.email,
-            about: userDetails.about
-        });
+        const fetchUserData = async () => {
+            try {
+                const userDetails = await getCurrentUserDetails(); // Fetch user details
+                setUser(userDetails);
+                setFormData({
+                    name: userDetails.name,
+                    email: userDetails.email,
+                    about: userDetails.about,
+                });
+            } catch (error) {
+                console.error("Error fetching user details:", error);
+            }
+        };
+
+        fetchUserData();
     }, []);
 
     const handleChange = (e) => {
@@ -30,17 +43,22 @@ function UserProfile() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        updateUserDetails(formData)
-            .then(updatedUser => {
-                setUser(updatedUser);
-                setEditMode(false);
-            })
-            .catch(error => {
-                console.error("Error updating user details", error);
-                alert("Failed to update user details. Please try again.");
-            });
+        try {
+            const updatedUser = { ...formData, id: user.id };
+            await updateUserDetails(updatedUser);
+            // localStorage.setItem("data",JSON.stringify(updatedUser));
+            toast.success("Updated Successfully.")
+
+            doReLogin({ ...JSON.parse(localStorage.getItem("data")), user: updatedUser });
+
+            setUser(updatedUser); // Update the user state with fresh details
+            setEditMode(false);
+        } catch (error) {
+            console.error("Error updating user details:", error);
+            alert("Failed to update user details. Please try again.");
+        }
     };
 
     return (
@@ -75,13 +93,15 @@ function UserProfile() {
                         </FormGroup>
                         <FormGroup>
                             <Label for="email">Email</Label>
-                            <Input type="email" name="email" id="email" value={formData.email} onChange={handleChange} />
+                            <Input type="email" name="email" id="email" value={formData.email} onChange={handleChange} readOnly />
                         </FormGroup>
                         <FormGroup>
                             <Label for="about">About</Label>
                             <Input type="textarea" name="about" id="about" value={formData.about} onChange={handleChange} />
                         </FormGroup>
-                        <Button type="submit" className='custom-button'>Save Changes</Button>
+                        <div className={'text-center'}>
+                            <Button type="submit" className='custom-button' outline>Save Changes</Button>
+                        </div>
                     </Form>
                 )}
             </CardBody>

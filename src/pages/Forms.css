@@ -1,6 +1,6 @@
 /* Forms.css */
 .custom-card {
-    border: 1px solid #0ABAB5; /* Outline color */
+    border: 1px solid #0ABAB5;
 }
 .custom-card-header{
     background-color: #B4F5F0;
@@ -8,7 +8,7 @@
 }
 
 .custom-button {
-    background-color: white;
+    background-color: transparent;
     border: 1px solid #0ABAB5;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -18,6 +18,12 @@
     border: 1px solid #0ABAB5;
     background-color: #0ABAB5;
     color: white;
+}
+
+.custom-input {
+    background-color: transparent;
+    border: 1px solid #0ABAB5;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .category-button {
@@ -38,3 +44,17 @@
     color: white;
     border-color: #81d8d0;
 }
+
+.login-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 95vh;
+    background-size: cover;
+}
+
+
+
+
+
+

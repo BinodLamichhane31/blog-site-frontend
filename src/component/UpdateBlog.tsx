@@ -75,6 +75,7 @@ function UpdateBlog() {
             .then(response=>{
                 console.log(response)
                 toast.success("Post updated.")
+                navigate(`/post/${post.postId}`); // Correct path for viewing the post
             })
             .catch(error=>{
                 console.log(error)

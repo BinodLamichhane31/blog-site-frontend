@@ -58,7 +58,7 @@ const BlogPage = ()=>{
         <Base>
             <Container className={'mt-4 mb-5'}>
                 <Row>
-                    <Col md={{size:12}}>
+                    <Col md={{size:10 ,offset:1}}>
                         <Card className={'mt-3 ps-2 shadow-sm'}>
                             {
                                 (post) &&(
@@ -93,7 +93,7 @@ const BlogPage = ()=>{
                 </Row>
 
                 <Row className={'mt-2'}>
-                    <Col>
+                    <Col md={{size:10 ,offset:1}}>
                         <Card className={'shadow-sm'}>
                             <CardBody>
                                 <h5 style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>

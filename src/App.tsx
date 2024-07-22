@@ -6,8 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Base from "./component/Base.tsx";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Home from "./pages/Home.tsx";
-import Login from "./pages/Login.tsx";
-import Signup from "./pages/Signup.tsx";
+import Login from "./component/Login.tsx";
+import Signup from "./component/Signup.tsx";
 import About from "./pages/About.tsx";
 import Service from "./pages/Service.tsx";
 import { ToastContainer, toast } from 'react-toastify';
@@ -30,8 +30,6 @@ function App() {
                 <Route path={"/home"} element={<Home/>}/>
                 <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/signup"} element={<Signup/>}/>
-                <Route path={"/about"} element={<About/>}/>
-                <Route path={"/services"} element={<Service/>}/>
                 <Route path={"/post/:postId"} element={<BlogPage/>}/>
                 <Route path={"/user"} element={<PrivateRoute/>}>
                     <Route path={"dashboard"} element={<Dashboard/>}/>

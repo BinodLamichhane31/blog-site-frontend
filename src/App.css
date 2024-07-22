@@ -67,13 +67,32 @@
 }
 
 .landing-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
-    transition: transform 0.3s ease;
+    background-color: #0ABAB5!important;
+    border: 1px solid #0ABAB5!important;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .landing-button:hover {
     transform: scale(1.1);
+}
+
+.btn-col {
+    background: #088E8B!important;
+    border: #088E8B!important;
+}
+
+
+.btn-col:hover{
+    transform: scale(1.1);
+
+}
+.btn-col-1 {
+    background: #056360!important;
+    border: #056360!important;
+}
+.btn-col-1:hover{
+    transform: scale(1.1);
+
 }
 
 
