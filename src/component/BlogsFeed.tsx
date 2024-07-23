@@ -1,63 +1,53 @@
-import React, { useEffect, useState } from "react";
-import {deletePostService, loadAllPosts} from "../services/post_service.tsx";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+import { deletePostService, loadAllPosts } from "../services/post_service";
 import { Col, Container, Input, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
-import Blog from "./Blog.tsx";
+import Blog from "./Blog";
 import { toast } from "react-toastify";
+import _ from "lodash";
 import './blog.css';
-import Category from "./Category.tsx";
-
-
+import Category from "./Category";
 
 function BlogsFeed() {
-    const [postContent, setPostContent] = useState({
-        content: [],
-        totalPages: '',
-        totalElements: '',
-        pageSize: '',
-        lastPage: false,
-        pageNumber: ''
-    });
     const [currentPage, setCurrentPage] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
 
-    useEffect(() => {
-        changePage(currentPage, selectedCategory);
-    }, [currentPage, selectedCategory]);
-
-    const changePage = (pageNumber = 0, categoryId = null, pageSize = 12) => {
-
-        if (pageNumber > postContent.pageNumber && postContent.lastPage) {
-            return;
-        }
-        if (pageNumber < postContent.pageNumber && postContent.pageNumber === 0) {
-            return;
-        }
-
-        loadAllPosts(pageNumber, pageSize, categoryId).then((data) => {
-            setPostContent(data);
-            window.scroll(0, 0);
-        }).catch((error) => {
-            toast.error("Error loading blogs.");
-        });
+    const fetchPosts = async (page, categoryId, query) => {
+        return loadAllPosts(page, 12, categoryId, query.toLowerCase());
     };
+
+    const { data: postContent, isLoading, isError, refetch } = useQuery(
+        ["posts", currentPage, selectedCategory, searchQuery],
+        () => fetchPosts(currentPage, selectedCategory, searchQuery),
+        { keepPreviousData: true, staleTime: 5000 }
+    );
+
+    const handleSearch = _.debounce((event) => {
+        setSearchQuery(event.target.value.toLowerCase());
+        setCurrentPage(0);
+    }, 300);
 
     function deletePost(post) {
         const confirmDelete = window.confirm("Are you sure you want to delete this post?");
         if (confirmDelete) {
             deletePostService(post.postId)
                 .then((res) => {
-                    console.log(res);
                     toast.success("Post deleted.");
-                    setPostContent(prevState => ({
-                        ...prevState,
-                        content: prevState.content.filter(p => p.postId !== post.postId)
-                    }));                })
+                    refetch();
+                })
                 .catch((error) => {
-                    console.log(error);
                     toast.error("Post deletion failure.");
                 });
         }
     }
+
+    const handlePageChange = (newPage) => {
+        if (newPage < 0 || newPage >= (postContent?.totalPages || 1)) {
+            return;
+        }
+        setCurrentPage(newPage);
+    };
 
     return (
         <div className='container-fluid mt-5'>
@@ -65,42 +55,52 @@ function BlogsFeed() {
                 <Col md={{ size: 10, offset: 1 }}>
                     <div>
                         <h5>Total blogs: {postContent ? postContent.totalElements : 'Loading...'}</h5>
-                        <Input type={'search'} placeholder={"Enter here to search"} />
+                        <Input type={'search'} placeholder={"Enter here to search"} onChange={handleSearch} />
                     </div>
                     <div className={'mt-3'}>
                         <Category onCategorySelect={(categoryId) => {
-                            console.log('Category selected in BlogsFeed:', categoryId);  // Log the category ID selected
                             setCurrentPage(0);
                             setSelectedCategory(categoryId);
                         }} />
                     </div>
                     <div className="d-flex flex-wrap justify-content-center">
-                        {postContent.content.length > 0 ? (
+                        {isLoading ? (
+                            <p>Loading...</p>
+                        ) : isError ? (
+                            <p>Error loading posts.</p>
+                        ) : postContent.content.length > 0 ? (
                             postContent.content.map((post) => (
-                                <Blog key={post.postId} post={post} deletePost={deletePost}/>
+                                <Blog key={post.postId} post={post} deletePost={deletePost} />
                             ))
                         ) : (
                             <p className={'mt-5'}>No posts available in this category.</p>
                         )}
                     </div>
-                    {postContent.content.length > 0 && (
+                    {postContent && postContent.content.length > 0 && (
                         <Container className="mt-3 d-flex justify-content-center">
                             <Pagination>
-                                <PaginationItem onClick={() => changePage(postContent.pageNumber - 1, selectedCategory)} disabled={postContent.pageNumber === 0}>
+                                <PaginationItem
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                    disabled={currentPage === 0}>
                                     <PaginationLink previous>
                                         Previous
                                     </PaginationLink>
                                 </PaginationItem>
 
                                 {[...Array(postContent.totalPages)].map((item, index) => (
-                                    <PaginationItem onClick={() => changePage(index, selectedCategory)} active={index === postContent.pageNumber} key={index}>
+                                    <PaginationItem
+                                        onClick={() => handlePageChange(index)}
+                                        active={index === currentPage}
+                                        key={index}>
                                         <PaginationLink>
                                             {index + 1}
                                         </PaginationLink>
                                     </PaginationItem>
                                 ))}
 
-                                <PaginationItem onClick={() => changePage(postContent.pageNumber + 1, selectedCategory)} disabled={postContent.lastPage}>
+                                <PaginationItem
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage >= (postContent?.totalPages || 1) - 1}>
                                     <PaginationLink next>
                                         Next
                                     </PaginationLink>

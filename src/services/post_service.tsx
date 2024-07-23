@@ -5,12 +5,15 @@ export const createPost = (postData) => {
         .then((response) => response.data);
 };
 
-export const loadAllPosts = (pageNumber, pageSize, categoryId) => {
+export const loadAllPosts = (pageNumber, pageSize, categoryId, query) => {
     let url = `posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`;
     if (categoryId !== null) {
         url = `category/${categoryId}/posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdDate&sortDir=dsc`;
     }
-    console.log('API request URL:', url);  // Log the API request URL
+    if (query) {
+        url += `&query=${query}`;
+    }
+    console.log('API request URL:', url);
     return privateAxios.get(url)
         .then((response) => response.data)
         .catch((error) => {
@@ -18,6 +21,7 @@ export const loadAllPosts = (pageNumber, pageSize, categoryId) => {
             throw error;
         });
 };
+
 
 export const loadPost = (postId) => {
     return myAxios.get("/posts/"+postId)
