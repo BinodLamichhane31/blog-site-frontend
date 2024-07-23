@@ -2,7 +2,7 @@
 .custom-card {
     border: 1px solid #0ABAB5;
 }
-.custom-card-header{
+.custom-card-header {
     background-color: #B4F5F0;
     text-align: center;
 }
@@ -38,7 +38,6 @@
     color: white;
 }
 
-
 .category-button.selected {
     background-color: #81d8d0;
     color: white;
@@ -53,8 +52,132 @@
     background-size: cover;
 }
 
+.hero-section {
+    background-image: url('public/img_3.png'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-width: 100%!important;
+    height: 90vh;
+    margin: 0 auto!important;
+    display: flex!important;
+    align-items: center!important;
+    padding: 50px;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the elements horizontally */
+}
 
+.hero-section h1 {
+    font-size: 3rem;
+}
 
+.hero-section p {
+    font-size: 1.5rem;
+}
 
+.hero-section .button-group {
+    margin-top: 10px;
+}
 
+.hero-section > div:first-child {
+    margin-right: 120px;
+}
 
+.hero-section .images-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+}
+
+.image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.image-item > div.cylinder {
+    width: 80px;
+    height: 160px;
+    border-radius: 40px;
+}
+
+.image-item > div.circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background-color: #0abab5;
+}
+
+.image-item img {
+    width: 80px;
+    height: 160px;
+    border-radius: 40px;
+    object-fit: cover;
+    filter: brightness(50%);
+    transition: 0.5s all;
+}
+
+.image-item img:hover {
+    filter: brightness(100%);
+}
+
+@media (max-width: 1200px) {
+    .hero-section {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 10px;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .image-item img, .image-item > div.cylinder, .image-item > div.circle {
+        width: 60px;
+        height: 120px;
+    }
+
+    .image-item > div.circle {
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-item img, .image-item > div.cylinder, .image-item > div.circle {
+        width: 50px;
+        height: 100px;
+    }
+
+    .image-item > div.circle {
+        height: 50px;
+    }
+
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-section p {
+        font-size: 0.875rem;
+    }
+}

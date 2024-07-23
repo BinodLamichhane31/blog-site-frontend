@@ -15,26 +15,22 @@
     align-items: center; /* Vertically align content */
 }
 .landing-page {
+    /*background-image: url("/public/tiffany-blue-background-ltkoianvdnknoya4.jpg   ");*/
+    background: rgba(192, 234, 230, 0.32);
     display: flex;
-    align-items: center;
+    align-items:center;
     justify-content: center;
     height: 100vh;
     position: relative;
     overflow: hidden;
 }
 
-.landing-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 20%,  transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.6), transparent 40%);
-    animation: animateBackground 10s infinite linear;
-    z-index: -1;
+.landing {
+    background-image: url("/public/tiffany-blue-background-ltkoianvdnknoya4.jpg");
 }
+
+
+
 
 @keyframes animateBackground {
     0% {
@@ -69,6 +65,8 @@
 .landing-button {
     background-color: #0ABAB5!important;
     border: 1px solid #0ABAB5!important;
+    width: 150px;
+    border-radius: 20px!important;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -79,6 +77,21 @@
 .btn-col {
     background: #088E8B!important;
     border: #088E8B!important;
+}
+
+.custom-button-landing {
+    background-color: transparent!important;
+    border: 1px solid #0ABAB5!important;
+    width: 150px;
+    border-radius: 20px!important;
+    transition: background-color 0.3s, color 0.3s!important;
+}
+
+.custom-button-landing:hover {
+    transform: scale(1.1) !important;
+    border: 1px solid #0ABAB5!important;
+    background-color: #0ABAB5!important;
+    color: white!important;
 }
 
 
