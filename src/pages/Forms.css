@@ -53,7 +53,7 @@
 }
 
 .hero-section {
-    background-image: url('public/img_3.png'); /* Replace with your background image path */
+    /*background-image: url('public/img_3.png'); !* Replace with your background image path *!*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -62,8 +62,8 @@
     margin: 0 auto!important;
     display: flex!important;
     align-items: center!important;
-    padding: 50px;
-    gap: 20px;
+    padding: 100px;
+    gap: 100px;
     flex-wrap: wrap;
     justify-content: center; /* Center the elements horizontally */
 }
@@ -78,10 +78,6 @@
 
 .hero-section .button-group {
     margin-top: 10px;
-}
-
-.hero-section > div:first-child {
-    margin-right: 120px;
 }
 
 .hero-section .images-container {

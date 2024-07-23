@@ -114,7 +114,7 @@ function CustomNavBar() {
                         {!login && (
                             <>
                                 <NavItem>
-                                    <Button className={'btn-col rounded-4 me-2 '} onClick={toggleLoginModal}>
+                                    <Button className={'btn-col rounded-4 me-2 mb-1'} onClick={toggleLoginModal}>
                                         Login
                                     </Button>
                                 </NavItem>

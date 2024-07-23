@@ -1,9 +1,20 @@
 import Base from "../component/Base.tsx";
-import { Button } from "reactstrap";
+import {Button, Toast} from "reactstrap";
 import { Link } from "react-router-dom";
 import './Forms.css';
+import {useEffect, useState} from "react";
+import {isLoggedIn} from "../auth";
+import {toast} from "react-toastify";
+
 
 function Hero() {
+    const [login, setLogin] = useState(false);
+    useEffect(() => {
+        setLogin(isLoggedIn());
+    }, [login]);
+
+    function showLogInFirst() {
+        toast.error("You need need to login first")    }
     return (
         <Base>
             <div className={'hero-section'}>
@@ -14,9 +25,20 @@ function Hero() {
                         <Button className="custom-button-landing" outline tag={Link} to={'/home'}>
                             Explore
                         </Button>
-                        <Button className="landing-button" tag={Link} to={'/user/dashboard'}>
-                            Create
-                        </Button>
+                        {
+                            login &&
+                            <Button className="landing-button" tag={Link} to={'/user/dashboard'}>
+                                Create
+                            </Button>
+                        }
+
+                        {
+                            !login &&
+                            <Button className="landing-button" onClick={showLogInFirst}>
+                                Create
+                            </Button>
+                        }
+
                     </div>
                 </div>
                 <div className={'images-container'}>

@@ -99,13 +99,12 @@ const BlogPage = ()=>{
                                 <h5 style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                                     Comments ({post ? post.comments.length : 0})
                                 </h5>
-
                                 <div className="comment-section">
                                     <Input
                                         type={'textarea'}
                                         className="mt-2 comment-input m-2"
                                         placeholder="Add a comment for this blog"
-                                        style={{height: '38px'}}
+                                        style={{height: "auto"}}
                                         value={comment.content}
                                         onChange={(event)=>setComment({content:event.target.value})}
                                     />

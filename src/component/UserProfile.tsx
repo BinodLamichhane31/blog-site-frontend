@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader, Label, Row, Col, Button, Form, FormGroup, I
 import './UserProfile.css';
 import { updateUserDetails } from '../services/user_service';
 
-import {doLogin, doReLogin, getCurrentUserDetails} from '../auth';
+import {doLogin, doLogOut, doReLogin, getCurrentUserDetails} from '../auth';
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 
@@ -50,7 +50,7 @@ function UserProfile() {
             await updateUserDetails(updatedUser);
             // localStorage.setItem("data",JSON.stringify(updatedUser));
             toast.success("Updated Successfully.")
-
+            localStorage.removeItem("data")
             doReLogin({ ...JSON.parse(localStorage.getItem("data")), user: updatedUser });
 
             setUser(updatedUser); // Update the user state with fresh details
@@ -93,7 +93,7 @@ function UserProfile() {
                         </FormGroup>
                         <FormGroup>
                             <Label for="email">Email</Label>
-                            <Input type="email" name="email" id="email" value={formData.email} onChange={handleChange} readOnly />
+                            <Input type="email" name="email" id="email" value={formData.email} onChange={handleChange}  />
                         </FormGroup>
                         <FormGroup>
                             <Label for="about">About</Label>
